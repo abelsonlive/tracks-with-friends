@@ -10,8 +10,7 @@ def index():
 
 @app.route('/track', methods=['POST'])
 def add_track():
-    print request.get_data()
-    print "YO"
+    print request.files['file']
     return 'Hello World!'
 
 if __name__ == '__main__':
