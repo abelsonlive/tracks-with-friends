@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 
 app = Flask(__name__)
@@ -10,7 +10,9 @@ def index():
 
 @app.route('/track', methods=['POST'])
 def add_track():
+    print request.get_data()
+    print "YO"
     return 'Hello World!'
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)

@@ -1,7 +1,49 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
+<meta charset=utf-8 />
+<title>Basic Drag and Drop</title>
+<style>
+#drop {
+  min-height: 100px;
+  width: 200px;
+  border: 3px dashed #ccc;
+  margin: 10px;
+  padding: 10px;
+}
+p {
+  margin: 3px 0;
+}
+</style>
+<script src="/static/js/dropzone.js"></script>
+<!-- <script src="./dropzone-4.3.0/dist/dropzone.css"></script> -->
 </head>
-<body>
-  <h1>Yo!</h1>
-</body>
+  <body>
+   <button id="submit-all">Submit all files</button>
+  <form action="/track" class="dropzone" id="my-dropzone"></form>
+  </body>
+  <script>
+  Dropzone.options.myDropzone = {
+
+  // Prevents Dropzone from uploading dropped files immediately
+  autoProcessQueue: false,
+
+  init: function() {
+    var submitButton = document.querySelector("#submit-all")
+        myDropzone = this; // closure
+
+    submitButton.addEventListener("click", function() {
+      myDropzone.processQueue(); // Tell Dropzone to process all queued files.
+    });
+
+    // You might want to show the submit button only when 
+    // files are dropped here:
+    this.on("addedfile", function() {
+      console.log('WHATSUP!!!!')
+      // Show submit button here and/or inform user to click it.
+    });
+
+  }
+};
+</script>
 </html>
